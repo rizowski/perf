@@ -15,7 +15,6 @@ suite.add('_.map', () =>{
   _.map(largerList, add1);
 })
 .add('_(arr).map', () =>{
-  throw new Error('AHH');
   _.chain(largerList).map(add1).value()
 })
 .add('[].map', () =>{
