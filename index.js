@@ -1,0 +1,2 @@
+
+require('./tests/collections/map');

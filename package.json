@@ -1,0 +1,25 @@
+{
+  "name": "perf",
+  "version": "0.0.0",
+  "description": "Performance testing for various things",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rizowski/perf.git"
+  },
+  "keywords": [
+    "performance"
+  ],
+  "author": "Colten Rouska",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rizowski/perf/issues"
+  },
+  "homepage": "https://github.com/rizowski/perf#readme",
+  "dependencies": {
+    "lodash": "^4.17.4"
+  }
+}
