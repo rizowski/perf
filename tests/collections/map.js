@@ -1,5 +1,6 @@
 const _ = require('lodash');
 const Benchmark = require('benchmark');
+const R = require('ramda');
 const suite = new Benchmark.Suite;
 
 const largerList = [];
@@ -13,6 +14,9 @@ function add1(element){
 
 module.exports = suite.add('_.map', () =>{
   _.map(largerList, add1);
+})
+.add('R.map', () =>{
+  R.map(add1, largerList);
 })
 .add('_(arr).map', () =>{
   _.chain(largerList).map(add1).value()
