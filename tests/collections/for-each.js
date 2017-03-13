@@ -1,4 +1,4 @@
-const _ = require('lodash');
+const lodash = require('lodash');
 const Benchmark = require('benchmark');
 const R = require('ramda');
 const under = require('underscore');
@@ -13,15 +13,15 @@ function sub1(element){
   return element - 1;
 }
 
-module.exports = suite.add('lodash.forEach', () =>{
-  _.forEach(largerList, sub1);
+module.exports = suite.add('[].forEach', () =>{
+  largerList.forEach(sub1);
+})
+.add('lodash.forEach', () =>{
+  lodash.forEach(largerList, sub1);
 })
 .add('ramda.forEach', () =>{
   R.forEach(sub1, largerList);
 })
 .add('underscore.forEach', () =>{
   under.each(largerList, sub1);
-})
-.add('[].forEach', () =>{
-  largerList.forEach(sub1);
 });
