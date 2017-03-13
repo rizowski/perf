@@ -5,7 +5,8 @@ let _ = require('lodash');
 let tests = [
   require('./tests/collections/map'),
   require('./tests/collections/for-each'),
-  require('./tests/objects/omit')
+  require('./tests/objects/omit'),
+  require('./tests/collections/find'),
 ];
 
 _.forEach(tests, t =>{
