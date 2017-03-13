@@ -3,7 +3,7 @@ const Benchmark = require('benchmark');
 const R = require('ramda');
 const under = require('underscore')
 const lazy = require('lazy.js');;
-const suite = new Benchmark.Suite;
+const suite = new Benchmark.Suite({ name: 'forEach' });
 
 const largerList = [];
 for (var i = 0; i<10000; i++) {
