@@ -4,6 +4,7 @@ const lodash = require('lodash');
 const Benchmark = require('benchmark');
 const R = require('ramda');
 const under = require('underscore');
+const lazy = require('lazy.js');
 const suite = new Benchmark.Suite;
 
 let myLargeObject = {};
@@ -73,6 +74,9 @@ module.exports = suite
 })
 .add('underscore.omit', () =>{
   under.omit(myLargeObject, deleteProps);
+})
+.add('lazy.omit', () =>{
+  lazy(myLargeObject).omit(deleteProps).value();
 })
 .add('ramda.omit', () =>{
   return R.omit(deleteProps, myLargeObject);

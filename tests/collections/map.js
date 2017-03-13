@@ -2,6 +2,7 @@ const lodash = require('lodash');
 const Benchmark = require('benchmark');
 const R = require('ramda');
 const under = require('underscore');
+const lazy = require('lazy.js');
 const suite = new Benchmark.Suite;
 
 const largerList = [];
@@ -13,7 +14,8 @@ function add1(element){
   return element + 1;
 }
 
-module.exports = suite.add('[].map', () =>{
+module.exports = suite
+.add('[].map', () =>{
   largerList.map(add1);
 })
 .add('lodash.map', () =>{
@@ -24,6 +26,9 @@ module.exports = suite.add('[].map', () =>{
 })
 .add('underscore.map', () =>{
   under.map(largerList, add1);
+})
+.add('lazy.map', () =>{
+  lazy(largerList).map(add1).value();
 })
 .add('ramda.map', () =>{
   R.map(add1, largerList);
