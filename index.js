@@ -10,15 +10,12 @@ let tests = [
   require('./tests/collections/find'),
   require('./tests/collections/filter'),
   require('./tests/collections/reduce'),
+  require('./tests/collections/sort'),
 ];
 
 _.forEach(tests, t =>{
-  t.on('cycle', function(event) {
-    // console.log(event.target.toString());
-  })
-  .on('complete', function() {
-    report.addResult(this);
-    // console.log(`===== ${this.filter('fastest').map('name')} =====`);
+  t.on('complete', function() {
+    report.runReports(this);
   })
   .on('error', (e) =>{
     console.error(e.target.error.stack)

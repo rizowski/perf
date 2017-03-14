@@ -1,47 +1,65 @@
 'use strict';
+const R = require('ramda');
+const underscore = require('underscore');
 
-function formatNumber(hz){
+const benches = [];
+
+function toNumber(hz){
+  const num = hz.toFixed(hz < 100 ? 2 : 0);
+  const strNum = String(num).split('.');
+  return Number(strNum[0]);
+}
+function prettyNumber(hz){
   const num = hz.toFixed(hz < 100 ? 2 : 0);
   const strNum = String(num).split('.');
   return strNum[0].replace(/(?=(?:\d{3})+$)(?!\b)/g, ',') +
     (strNum[1] ? '.' + strNum[1] : '');
 }
 
-function getStats(thing){
-  return thing.map('stats')[0];
+function printSpec(result, type){
+  console.log(`${type}: ${result.name} | ${result.frequency.prettyOps} ops/sec | ${result.samplesRan} samples`);
 }
 
-function getTimes(thing){
-  return thing.map('times')[0];
-}
+function print(suite){
+  const results = suite.results;
+  console.log(`================ ${suite.type} ================`);
+  const fastest = results[results.length - 1];
+  const slowest = results[0];
 
-function getSpecs(bench){
-  const spec = {
-    options: {
-      async: bench.map('async')[0],
-      benchName: bench.options.name
-    },
-    name: bench.map('name')[0],
-    stats: getStats(bench),
-    times: getTimes(bench),
-    ops: formatNumber(bench.map('hz')[0])
-  };
-
-  spec.samplesRan = spec.stats.sample.length;
-  return spec;
-}
-
-function print(type, spec){
-  console.log(`${type}: ${spec.name} | ${spec.ops} ops/sec | ${spec.samplesRan} samples`);
+  underscore.forEach(results, (r) =>{
+    console.log(`${r.name} | ${r.frequency.prettyOps} ops/sec | ${r.samplesRan} samples`)
+  });
+  console.log();
+  printSpec(fastest, 'Fastest');
+  printSpec(slowest, 'Slowest');
+  console.log('\n');
 }
 
 module.exports = {
-  addResult(benches){
-    const fastest = getSpecs(benches.filter('fastest'));
-    const slowest = getSpecs(benches.filter('slowest'));
-    console.log(`================ ${fastest.options.benchName} ================`);
-    print('Fastest', fastest);
-    print('Slowest', slowest);
-    console.log('\n');
+  runReports(benches){
+    const results = R.sort((a, b) => a.frequency.operations - b.frequency.operations,
+      R.map(function (bench){
+        return {
+          options: {
+            async: bench.async
+          },
+          name: bench.name,
+          stats: bench.stats,
+          times: bench.times,
+          frequency: {
+            hz: bench.hz,
+            operations: toNumber(bench.hz),
+            prettyOps: prettyNumber(bench.hz)
+          },
+          samplesRan: bench.stats.sample.length
+        };
+      }, benches));
+
+    const suite = {
+      type: benches.options.name,
+      results
+    };
+
+    print(suite);
   }
 }
