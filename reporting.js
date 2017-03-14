@@ -1,6 +1,8 @@
 'use strict';
 const R = require('ramda');
 const underscore = require('underscore');
+const table = require('text-table');
+
 
 const benches = [];
 
@@ -16,22 +18,30 @@ function prettyNumber(hz){
     (strNum[1] ? '.' + strNum[1] : '');
 }
 
-function printSpec(result, type){
-  console.log(`${type}: ${result.name} | ${result.frequency.prettyOps} ops/sec | ${result.samplesRan} samples`);
+function createRow(pre, r){
+  return [pre, r.name, `${r.frequency.prettyOps} ops/sec`, `${r.samplesRan} samples`];
+}
+
+function createTableStructure(suite){
+  return underscore.map(suite.results, function(r, i, derp){
+    if(i === 0){
+      return createRow('Slow', r);
+    } else if(i === suite.results.length - 1){
+      return createRow('Fast', r);
+    }
+    return createRow('', r);
+  });
 }
 
 function print(suite){
   const results = suite.results;
-  console.log(`================ ${suite.type} ================`);
+  console.log(`====================== ${suite.type} ======================`);
   const fastest = results[results.length - 1];
   const slowest = results[0];
 
-  underscore.forEach(results, (r) =>{
-    console.log(`${r.name} | ${r.frequency.prettyOps} ops/sec | ${r.samplesRan} samples`)
-  });
-  console.log();
-  printSpec(fastest, 'Fastest');
-  printSpec(slowest, 'Slowest');
+  const resultTable = createTableStructure(suite);
+
+  console.log(table(resultTable));
   console.log('\n');
 }
 

@@ -1,87 +1,56 @@
-# perf
+# Performance Benchmarks
 Performance testing of various things
 
-#### ================ map ================
+```js
+====================== map ======================
+Slow  lazy          4,059 ops/sec   87 samples
+      native        5,276 ops/sec   82 samples
+      lodash.chain  6,263 ops/sec   83 samples
+      lodash.map    7,199 ops/sec   82 samples
+      underscore    32,412 ops/sec  88 samples
+Fast  ramda         41,030 ops/sec  89 samples
 
- - lazy.map | 3,762 ops/sec | 84 samples
- - [].map | 5,647 ops/sec | 78 samples
- - lodash.chain(arr).map | 6,258 ops/sec | 83 samples
- - lodash.map | 7,583 ops/sec | 86 samples
- - underscore.map | 31,491 ops/sec | 85 samples
- - ramda.map | 39,682 ops/sec | 79 samples
+====================== forEach ======================
+Slow  native      6,745 ops/sec    87 samples
+      lodash      8,349 ops/sec    86 samples
+      underscore  9,372 ops/sec    86 samples
+      lazy        59,800 ops/sec   86 samples
+Fast  ramda       128,332 ops/sec  87 samples
 
- - Fastest: ramda.map | 39,682 ops/sec | 79 samples
- - Slowest: lazy.map | 3,762 ops/sec | 84 samples
+====================== omit ======================
+Slow  lodash.omit          234 ops/sec  81 samples
+      underscore.omit      293 ops/sec  83 samples
+      ramda.omit           329 ops/sec  76 samples
+      lazy.omit            543 ops/sec  78 samples
+Fast  Custom (no nesting)  610 ops/sec  85 samples
 
+====================== find ======================
+Slow  lodash      1,325 ops/sec   87 samples
+      underscore  1,378 ops/sec   88 samples
+      native      15,969 ops/sec  88 samples
+      lazy        18,526 ops/sec  85 samples
+Fast  ramda       32,700 ops/sec  86 samples
 
-#### ================ forEach ================
+====================== filter ======================
+Slow  lazy       3,233 ops/sec   86 samples
+      native     3,934 ops/sec   86 samples
+      lodash     4,976 ops/sec   86 samples
+      undescore  6,208 ops/sec   90 samples
+Fast  ramda      10,306 ops/sec  88 samples
 
- - [].forEach | 6,206 ops/sec | 81 samples
- - lodash.forEach | 8,124 ops/sec | 85 samples
- - lazy | 60,244 ops/sec | 91 samples
- - ramda.forEach | 127,254 ops/sec | 87 samples
- - underscore.forEach | 128,317 ops/sec | 85 samples
+====================== reduce ======================
+Slow  lazy       1,722 ops/sec  87 samples
+      native     1,897 ops/sec  87 samples
+      lodash     2,113 ops/sec  83 samples
+      ramda      2,199 ops/sec  86 samples
+Fast  undescore  2,483 ops/sec  85 samples
 
- - Fastest: underscore.forEach | 128,317 ops/sec | 85 samples
- - Slowest: [].forEach | 6,206 ops/sec | 81 samples
-
-
-#### ================ omit ================
-
- - lodash.omit | 232 ops/sec | 81 samples
- - underscore.omit | 248 ops/sec | 70 samples
- - ramda.omit | 303 ops/sec | 79 samples
- - lazy.omit | 502 ops/sec | 79 samples
- - Custom (no nesting) | 633 ops/sec | 86 samples
-
- - Fastest: Custom (no nesting) | 633 ops/sec | 86 samples
- - Slowest: lodash.omit | 232 ops/sec | 81 samples
-
-
-#### ================ find ================
-
- - lodash.find | 1,180 ops/sec | 82 samples
- - underscore.find | 1,299 ops/sec | 82 samples
- - native.find | 9,667 ops/sec | 79 samples
- - lazy.find | 11,483 ops/sec | 86 samples
- - ramda.find | 19,575 ops/sec | 79 samples
-
-
- - Fastest: ramda.find | 19,575 ops/sec | 79 samples
- - Slowest: lodash.find | 1,180 ops/sec | 82 samples
-
-
-#### ================ filter ================
-
- - lazy | 2,895 ops/sec | 77 samples
- - native | 3,649 ops/sec | 85 samples
- - lodash | 4,792 ops/sec | 87 samples
- - undescore | 5,912 ops/sec | 85 samples
- - ramda | 10,298 ops/sec | 80 samples
-
- - Fastest: ramda | 10,298 ops/sec | 80 samples
- - Slowest: lazy | 2,895 ops/sec | 77 samples
-
-
-#### ================ reduce ================
-
- - native | 1,628 ops/sec | 80 samples
- - lazy | 1,670 ops/sec | 86 samples
- - lodash | 1,683 ops/sec | 78 samples
- - undescore | 1,975 ops/sec | 80 samples
- - ramda | 1,988 ops/sec | 84 samples
-
- - Fastest: ramda | 1,988 ops/sec | 84 samples
- - Slowest: native | 1,628 ops/sec | 80 samples
-
-#### ================ sort ================
- - lodash | 0.60 ops/sec | 6 samples
- - lazy.sortBy | 1.09 ops/sec | 7 samples
- - ramda.sort | 215 ops/sec | 76 samples
- - lazy.sort | 229 ops/sec | 77 samples
- - undescore | 235 ops/sec | 59 samples
- - native | 654 ops/sec | 83 samples
- - ramda.sortBy | 5,358 ops/sec | 82 samples
-
- - Fastest: ramda.sortBy | 5,358 ops/sec | 82 samples
- - Slowest: lodash | 0.60 ops/sec | 6 samples
+====================== sort ======================
+Slow  lodash        0.67 ops/sec   6 samples
+      lazy.sortBy   1.44 ops/sec   8 samples
+      ramda.sort    222 ops/sec    81 samples
+      lazy.sort     254 ops/sec    78 samples
+      undescore     268 ops/sec    63 samples
+      native        675 ops/sec    86 samples
+Fast  ramda.sortBy  4,674 ops/sec  81 samples
+```
