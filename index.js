@@ -4,10 +4,12 @@ let _ = require('lodash');
 let report = require('./reporting');
 
 let tests = [
-  // require('./tests/collections/map'),
+  require('./tests/collections/map'),
   require('./tests/collections/for-each'),
-  // require('./tests/objects/omit'),
-  // require('./tests/collections/find'),
+  require('./tests/objects/omit'),
+  require('./tests/collections/find'),
+  require('./tests/collections/filter'),
+  require('./tests/collections/reduce'),
 ];
 
 _.forEach(tests, t =>{
