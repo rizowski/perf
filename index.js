@@ -1,6 +1,6 @@
 'use strict';
 
-let _ = require('lodash');
+let underscore = require('underscore');
 let report = require('./reporting');
 
 let tests = [
@@ -13,7 +13,7 @@ let tests = [
   require('./tests/collections/sort'),
 ];
 
-_.forEach(tests, t =>{
+underscore.forEach(tests, t =>{
   t.on('complete', function() {
     report.runReports(this);
   })

@@ -10,18 +10,18 @@ const util = require('../../utils');
 const arr = util.createRandomArray();
 
 module.exports = suite
-.add('native.find', () => {
+.add('native', () => {
   arr.find(el => el === 8463);
 })
-.add('lodash.find', () =>{
+.add('lodash', () =>{
   lodash.find(arr, 8463);
 })
-.add('underscore.find', () =>{
+.add('underscore', () =>{
   under.find(arr, 8463);
 })
-.add('lazy.find', () =>{
+.add('lazy', () =>{
   lazy(arr).find((el) => el === 8463);
 })
-.add('ramda.find', () =>{
+.add('ramda', () =>{
   R.find((el) => el === 8463)(arr);
 });

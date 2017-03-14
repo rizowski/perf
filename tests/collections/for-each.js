@@ -15,18 +15,18 @@ function sub1(element){
 }
 
 module.exports = suite
-.add('[].forEach', () =>{
+.add('native', () =>{
   largerList.forEach(sub1);
 })
-.add('lodash.forEach', () =>{
+.add('lodash', () =>{
   lodash.forEach(largerList, sub1);
 })
-.add('ramda.forEach', () =>{
+.add('ramda', () =>{
   R.forEach(sub1, largerList);
 })
 .add('lazy', () =>{
   lazy(largerList).each(sub1);
 })
-.add('underscore.forEach', () =>{
+.add('underscore', () =>{
   under.each(largerList, sub1);
 });

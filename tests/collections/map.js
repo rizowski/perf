@@ -15,21 +15,21 @@ function add1(element){
 }
 
 module.exports = suite
-.add('[].map', () =>{
+.add('native', () =>{
   largerList.map(add1);
 })
 .add('lodash.map', () =>{
   lodash.map(largerList, add1);
 })
-.add('lodash.chain(arr).map', () =>{
+.add('lodash.chain', () =>{
   lodash.chain(largerList).map(add1).value()
 })
-.add('underscore.map', () =>{
+.add('underscore', () =>{
   under.map(largerList, add1);
 })
-.add('lazy.map', () =>{
+.add('lazy', () =>{
   lazy(largerList).map(add1).value();
 })
-.add('ramda.map', () =>{
+.add('ramda', () =>{
   R.map(add1, largerList);
 });
