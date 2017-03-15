@@ -30,7 +30,9 @@ module.exports = suite
   lazy(arr).sort().value();
 })
 .add('ramda.sortBy', () =>{
-  R.sortBy(comparison, arr);
+  R.sortBy(function(a){
+    return a;
+  }, arr);
 })
 .add('ramda.sort', () =>{
   R.sort(comparison, arr);
