@@ -1,4 +1,4 @@
-const lodash = require('lodash');
+const lodash = require('../../lib/lodash');
 const Benchmark = require('benchmark');
 const R = require('ramda');
 const under = require('underscore');
@@ -11,7 +11,7 @@ for (var i = 0; i<10000; i++) {
 }
 
 function add1(element){
-  return element + 1;
+  return element * element;
 }
 
 module.exports = suite
@@ -20,9 +20,6 @@ module.exports = suite
 })
 .add('lodash.map', () =>{
   lodash.map(largerList, add1);
-})
-.add('lodash.chain', () =>{
-  lodash.chain(largerList).map(add1).value()
 })
 .add('underscore', () =>{
   under.map(largerList, add1);

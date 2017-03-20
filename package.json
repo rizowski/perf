@@ -4,6 +4,7 @@
   "description": "Performance testing for various things",
   "main": "index.js",
   "scripts": {
+    "pretest": "mocha --recursive tests",
     "test": "node index.js"
   },
   "repository": {
@@ -26,5 +27,9 @@
     "ramda": "^0.23.0",
     "text-table": "^0.2.0",
     "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
   }
 }

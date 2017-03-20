@@ -1,5 +1,9 @@
 # Performance Benchmarks
-Performance testing of various things
+
+
+### Tests
+
+These tests have been ran and reported on Mac OSX v10.12.3 15 inch 26 GHz Intel Core i7
 
 ```js
 ====================== map ======================

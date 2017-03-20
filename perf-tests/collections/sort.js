@@ -1,4 +1,4 @@
-const lodash = require('lodash');
+const lodash = require('../../lib/lodash');
 const Benchmark = require('benchmark');
 const R = require('ramda');
 const under = require('underscore');

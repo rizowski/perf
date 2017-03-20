@@ -1,32 +1,31 @@
-const lodash = require('lodash');
+const lodash = require('../../lib/lodash');
 const Benchmark = require('benchmark');
 const R = require('ramda');
 const under = require('underscore');
 const lazy = require('lazy.js');
-const suite = new Benchmark.Suite({ name: 'reduce' });
+const suite = new Benchmark.Suite({ name: 'filter' });
 
 const util = require('../../utils');
 
 const arr = util.createRandomArray();
 
-function toObject(curr, item){
-  curr[item] = true;
-  return curr;
+function even(num){
+  return num % 2 === 0;
 }
 
 module.exports = suite
 .add('native', () =>{
-  arr.reduce(toObject, {});
+  arr.filter(even);
 })
 .add('lodash', () =>{
-  lodash.reduce(arr, toObject, {});
+  lodash.filter(arr, even);
 })
 .add('undescore', () =>{
-  under.reduce(arr, toObject, {});
+  under.filter(arr, even);
 })
 .add('lazy', () =>{
-  lazy(arr).reduce(toObject, {});
+  lazy(arr).filter(even).value();
 })
 .add('ramda', () =>{
-  R.reduce(toObject, {}, arr);
+  R.filter(even, arr);
 })
