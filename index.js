@@ -4,13 +4,14 @@ let underscore = require('underscore');
 let report = require('./reporting');
 
 let tests = [
-  require('./perf-tests/collections/map'),
+  // require('./perf-tests/collections/map'),
   // require('./perf-tests/collections/for-each'),
   // require('./perf-tests/objects/omit'),
-  // require('./perf-tests/collections/find'),
+  require('./perf-tests/collections/find'),
   // require('./perf-tests/collections/filter'),
   // require('./perf-tests/collections/reduce'),
-  // require('./perf-tests/collections/sort'),
+  require('./perf-tests/collections/sort'),
+  require('./perf-tests/collections/sort-by'),
 ];
 
 underscore.forEach(tests, t =>{

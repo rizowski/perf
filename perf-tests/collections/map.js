@@ -18,7 +18,7 @@ module.exports = suite
 .add('native', () =>{
   largerList.map(add1);
 })
-.add('lodash.map', () =>{
+.add('lodash', () =>{
   lodash.map(largerList, add1);
 })
 .add('underscore', () =>{

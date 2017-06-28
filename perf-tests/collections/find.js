@@ -1,27 +1,18 @@
-const lodash = require('../../lib/lodash');
+'use strict';
+
 const Benchmark = require('benchmark');
-const R = require('../../lib/ramda');
-const under = require('underscore');
-const lazy = require('lazy.js');
-const suite = new Benchmark.Suite({ name: 'find' });
 
 const util = require('../../utils');
+const libs = require('../../lib');
+
+const suite = new Benchmark.Suite({ name: 'find' });
 
 const arr = util.createRandomArray();
 
-module.exports = suite
-.add('native', () => {
-  arr.find(el => el === 8463);
-})
-.add('lodash', () =>{
-  lodash.find(arr, el => el === 8463);
-})
-.add('underscore', () =>{
-  under.find(arr, el => el === 8463);
-})
-.add('lazy', () =>{
-  lazy(arr).find((el) => el === 8463);
-})
-.add('ramda', () =>{
-  R.find((el) => el === 8463, arr);
-});
+Object.keys(libs)
+  .forEach((libName) => {
+    const lib = libs[libName];
+    suite.add(libName, () => lib.find(arr, el => el === 8463))
+  });
+
+module.exports = suite;
