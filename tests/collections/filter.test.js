@@ -2,7 +2,7 @@
 
 const expect = require('chai').expect;
 
-const libs = require('../../lib');
+const libs = require('../../src/libs');
 
 describe('filter', () => {
   const arr = [{ a: 6 }, { a: 3.5 }, { a: 'no0b' }, { a: false }];

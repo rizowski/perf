@@ -1,6 +1,6 @@
 
 const { expect } = require('chai');
-const libs = require('../../lib');
+const libs = require('../../src/libs');
 const utils = require('../../utils');
 
 describe('sorting', () => {

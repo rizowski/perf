@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const libs = require('../../lib');
+const libs = require('../../src/libs');
 
 describe('omit', () => {
   const obj = {

@@ -1,7 +1,7 @@
-const libs = require('../../lib');
 const Benchmark = require('benchmark');
 const suite = new Benchmark.Suite({ name: 'reduce' });
 
+const libs = require('../../src/libs');
 const util = require('../../utils');
 
 const arr = util.createRandomArray();

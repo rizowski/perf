@@ -1,8 +1,7 @@
-
 const Benchmark = require('benchmark');
 
 const util = require('../../utils');
-const libs = require('../../lib');
+const libs = require('../../src/libs');
 
 const suite = new Benchmark.Suite({ name: 'sort' });
 const arr = util.createRandomArray();

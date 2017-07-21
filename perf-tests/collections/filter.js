@@ -1,5 +1,5 @@
 const Benchmark = require('benchmark');
-const libs = require('../../lib');
+const libs = require('../../src/libs');
 
 const suite = new Benchmark.Suite({ name: 'filter' });
 
