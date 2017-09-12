@@ -6,75 +6,75 @@
 These tests have been ran and reported on Mac OSX v10.12.3 15 inch 26 GHz Intel Core i7
 
 ```js
-====================== sortBy ======================
-Slow  lodash      0.74 ops/sec   6 samples
-      lazy        1.04 ops/sec   7 samples
-      underscore  165 ops/sec    82 samples
-      native      200 ops/sec    82 samples
-Fast  rambda      5,605 ops/sec  59 samples
-
-
-====================== sort ======================
-Slow  rambda      2.09 ops/sec   10 samples
-      lodash      88.89 ops/sec  56 samples
-      native      149 ops/sec    71 samples
-      underscore  161 ops/sec    79 samples
-Fast  lazy        196 ops/sec    81 samples
-
-
-====================== forEach ======================
-Slow  native      1,684 ops/sec   76 samples
-      lazy        9,098 ops/sec   35 samples
-      lodash      9,300 ops/sec   73 samples
-      rambda      80,668 ops/sec  58 samples
-Fast  underscore  81,193 ops/sec  43 samples
-
-
-====================== omit ======================
-Slow  native      40.41 ops/sec  53 samples
-      lodash      442 ops/sec    64 samples
-      underscore  459 ops/sec    83 samples
-      rambda      535 ops/sec    87 samples
-Fast  lazy        645 ops/sec    81 samples
-
-
-====================== map ======================
-Slow  native      273 ops/sec     84 samples
-      lazy        1,575 ops/sec   81 samples
-      underscore  7,374 ops/sec   82 samples
-      lodash      7,483 ops/sec   59 samples
-Fast  rambda      44,020 ops/sec  66 samples
+====================== filter ======================
+Fast  rambda      13,988 ops/sec  88 samples
+      underscore  6,907 ops/sec   89 samples
+      lazy        5,630 ops/sec   87 samples
+      lodash      5,550 ops/sec   89 samples
+Slow  native      420 ops/sec     86 samples
 
 
 ====================== find ======================
-Slow  underscore  14,186 ops/sec  60 samples
-      lazy        14,545 ops/sec  91 samples
-      native      15,076 ops/sec  91 samples
-      rambda      19,086 ops/sec  83 samples
-Fast  lodash      19,783 ops/sec  53 samples
+Fast  rambda      20,995 ops/sec  90 samples
+      lodash      12,961 ops/sec  83 samples
+      native      12,711 ops/sec  83 samples
+      underscore  12,395 ops/sec  88 samples
+Slow  lazy        12,156 ops/sec  81 samples
 
 
-====================== filter ======================
-Slow  native      381 ops/sec     85 samples
-      lazy        2,049 ops/sec   77 samples
-      lodash      5,023 ops/sec   66 samples
-      underscore  6,545 ops/sec   75 samples
-Fast  rambda      13,039 ops/sec  75 samples
+====================== forEach ======================
+Fast  rambda      114,852 ops/sec  84 samples
+      lazy        31,968 ops/sec   87 samples
+      underscore  9,197 ops/sec    83 samples
+      lodash      7,215 ops/sec    86 samples
+Slow  native      1,778 ops/sec    87 samples
+
+
+====================== map ======================
+Fast  rambda      46,314 ops/sec  82 samples
+      lodash      7,950 ops/sec   86 samples
+      underscore  7,330 ops/sec   83 samples
+      lazy        3,995 ops/sec   85 samples
+Slow  native      273 ops/sec     79 samples
 
 
 ====================== reduce ======================
-Slow  native      557 ops/sec  85 samples
-      lazy        739 ops/sec  88 samples
-      lodash      850 ops/sec  88 samples
-      underscore  887 ops/sec  87 samples
-Fast  rambda      894 ops/sec  81 samples
+Fast  underscore  1,870 ops/sec  84 samples
+      rambda      944 ops/sec    84 samples
+      lodash      919 ops/sec    87 samples
+      lazy        917 ops/sec    85 samples
+Slow  native      543 ops/sec    83 samples
+
+
+====================== sortBy ======================
+Fast  rambda      7,730 ops/sec  86 samples
+      native      440 ops/sec    79 samples
+      underscore  314 ops/sec    79 samples
+      lazy        2.65 ops/sec   11 samples
+Slow  lodash      0.76 ops/sec   7 samples
+
+
+====================== sort ======================
+Fast  lazy        385 ops/sec   82 samples
+      underscore  307 ops/sec   79 samples
+      native      218 ops/sec   76 samples
+      lodash      115 ops/sec   68 samples
+Slow  rambda      3.52 ops/sec  13 samples
+
+
+====================== omit ======================
+Fast  lazy        627 ops/sec    81 samples
+      rambda      539 ops/sec    83 samples
+      lodash      448 ops/sec    82 samples
+      underscore  446 ops/sec    79 samples
+Slow  native      42.18 ops/sec  55 samples
 
 
 ====================== new Promise ======================
-Slow  bluebird       0.31 ops/sec       65 samples
-      Q              29,922 ops/sec     66 samples
-      native         303,416 ops/sec    74 samples
-      rsvp           1,128,774 ops/sec  81 samples
-Fast  forbesPromise  1,534,114 ops/sec  79 samples
+Fast  forbesPromise  1,519,836 ops/sec  81 samples
+      bluebird       1,229,088 ops/sec  78 samples
+      rsvp           952,816 ops/sec    80 samples
+      native         243,218 ops/sec    79 samples
+Slow  Q              27,364 ops/sec     67 samples
 
 ```

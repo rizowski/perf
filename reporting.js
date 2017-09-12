@@ -2,6 +2,10 @@
 const R = require('ramda');
 const underscore = require('underscore');
 const table = require('text-table');
+const fs = require('fs');
+const path = require('path');
+const csvWriter = require('csv-write-stream');
+const moment = require('moment');
 
 
 const benches = [];
@@ -24,9 +28,9 @@ function createRow(pre, r){
 
 function createTableStructure(suite){
   return underscore.map(suite.results, function(r, i, derp){
-    if(i === 0){
+    if(i === suite.results.length - 1){
       return createRow('Slow', r);
-    } else if(i === suite.results.length - 1){
+    } else if(i === 0){
       return createRow('Fast', r);
     }
     return createRow('', r);
@@ -45,9 +49,36 @@ function print(suite){
   console.log('\n');
 }
 
+function createDataRow(rank, totalRecords, record){
+  const slowest = rank === totalRecords;
+  const fastest = rank === 1;
+  const date = moment().format('MM/DD/YYYY');
+
+  let indicator = '|';
+  if (slowest) {
+    indicator = 'S';
+  }
+  if(fastest){
+    indicator = 'F';
+  }
+
+
+  return [date, indicator, record.name, Number(record.frequency.operations), Number(record.samplesRan)];
+}
+
+function saveResults(suite){
+  const { results, type } = suite;
+
+  const dataset = underscore.map(suite.results, function (r, i){
+    return createDataRow(++i, suite.results.length, r);
+  });
+
+  console.log(dataset);
+}
+
 module.exports = {
   runReports(benches){
-    const results = R.sort((a, b) => a.frequency.operations - b.frequency.operations,
+    const results = R.sort((a, b) => b.frequency.operations - a.frequency.operations,
       R.map(function (bench){
         return {
           options: {
@@ -59,7 +90,7 @@ module.exports = {
           frequency: {
             hz: bench.hz,
             operations: toNumber(bench.hz),
-            prettyOps: prettyNumber(bench.hz)
+            prettyOps: prettyNumber(bench.hz),
           },
           samplesRan: bench.stats.sample.length
         };
@@ -71,5 +102,6 @@ module.exports = {
     };
 
     print(suite);
+    // saveResults(suite);
   }
 }

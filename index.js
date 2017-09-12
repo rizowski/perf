@@ -4,11 +4,10 @@ let underscore = require('underscore');
 let report = require('./reporting');
 
 let tests = underscore.flatten([
-  require('./perf-tests/collections'),
-
-  require('./perf-tests/objects'),
-
-  require('./perf-tests/naturals/new-promise')
+  // require('./perf-tests/collections'),
+  // require('./perf-tests/objects'),
+  // require('./perf-tests/naturals/new-promise')
+  require('./perf-tests/naturals/conditionals')
 ]);
 
 underscore.forEach(tests, t =>{
