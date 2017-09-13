@@ -7,7 +7,8 @@ let tests = underscore.flatten([
   // require('./perf-tests/collections'),
   // require('./perf-tests/objects'),
   // require('./perf-tests/naturals/new-promise')
-  require('./perf-tests/naturals/conditionals')
+  // require('./perf-tests/naturals/conditionals')
+  require('./perf-tests/naturals/operators')
 ]);
 
 underscore.forEach(tests, t =>{
